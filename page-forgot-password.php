@@ -97,8 +97,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $headers = "MIME-Version: 1.0\r\n";
             $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-            $headers .= "From: parkingMagicbox@attthost24.pl\r\n";
-            $headers .= "Reply-To: parkingMagicbox@attthost24.pl\r\n";
+            $headers .= "From: \r\n";
+            $headers .= "Reply-To: \r\n";
 
             if (mail($to, $subject, $email_message, $headers)) {
                 $message = '<div class="success-message">Nowe hasło zostało wysłane na Twój adres email.</div>';
