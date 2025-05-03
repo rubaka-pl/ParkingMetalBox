@@ -18,6 +18,7 @@ This is a simple promo code project created as one of my first attempts to build
 - Box status management via a custom WordPress admin page
 - Pure PHP + vanilla JS (no jQuery or frameworks)
 - Data stored and handled with custom SQL
+- MySQL triggers to automate updates (e.g., count sales per user)
 
 ## 🎯 Learning Goals
 
@@ -40,6 +41,8 @@ To mój prosty projekt systemu promokodów stworzony jako jeden z pierwszych plu
 - Weryfikacja promokodów
 - Zarządzanie statusami boksów przez kokpit WordPressa
 - Brak jQuery i frameworków – czysty JS i PHP
+- Użycie MySQL Triggerów do aktualizacji danych
+
 
 
 ## 📘 Cele nauki
