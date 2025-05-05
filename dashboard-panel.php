@@ -31,31 +31,31 @@ if (isset($_POST['insert_box_order']) && wp_verify_nonce($_POST['insert_box_nonc
         'phone' => '123456789',
         'email' => 'email@example.com',
         'message' => 'Zamówione przez dashboard',
-        'employerNIP' => '0000000000',
-        'employerName' => 'Firma',
-        'cenaSuma' => 3500,
-        'cenaBox' => 3600,
-        'cenaAsortyment' => 0,
-        'produktZamowienie' => $box_type,
-        'asortymentZamowienie' => '0',
-        'szerokoscBoxa' => '900',
-        'wysokoscSkrzyni' => '2200',
-        'wysokoscPodstawy' => '400',
-        'md5sum' => md5(uniqid()),
-        'securityCode' => substr(md5(rand()), 0, 10),
-        'platnosc' => 'online',
-        'cenaTransport' => 400.00,
-        'wojewodztwo' => 'mazowieckie',
-        'crc' => strtoupper(uniqid()),
-        'status' => 'nowe',
-        'czy_rabat' => 'tak',
+        '#' => '0000000000',
+        '#' => 'Firma',
+        '#' => 3500,
+        '#' => 3600,
+        '#' => 0,
+        '#' => $box_type,
+        '#' => '#',
+        '#' => '#',
+        '#' => '#',
+        '#' => '#',
+        '#' => md5(uniqid()),
+        '#' => substr(md5(rand()), 0, 10),
+        '#' => '#',
+        '#' => 400.00,
+        '#' => '#',
+        '#' => strtoupper(uniqid()),
+        '#' => '#',
+        '#' => '#',
         'kod_rabatowy' => $promo_code,
-        'kwota_rabatu' => '100',
-        'zrodlo' => 'dashboard',
-        'notka' => 'Formularz zamówienia boksu',
-        'data_ponowny_kontakt' => '',
-        'data_montazu' => null,
-        'opiekun' => null,
+        '#' => '#',
+        '#' => '#',
+        '#' => 'Formularz zamówienia boksu',
+        '#' => '',
+        '#' => null,
+        '#' => null,
         'quantity' => $quantity
     ]);
 
@@ -67,39 +67,26 @@ if (isset($_POST['submit_payout']) && wp_verify_nonce($_POST['payout_nonce'], 'p
     $user_id = $_SESSION['user_id'];
 
     $data = [
-        'user_id' => $user_id,
-        'imie' => sanitize_text_field($_POST['imie']),
-        'nazwisko' => sanitize_text_field($_POST['nazwisko']),
-        'data_urodzenia' => sanitize_text_field($_POST['data_urodzenia']),
-        'numer_rachunku' => sanitize_text_field($_POST['numer_rachunku']),
-        'nazwa_banku' => sanitize_text_field($_POST['nazwa_banku']),
-        'ulica' => sanitize_text_field($_POST['ulica']),
-        'miasto' => sanitize_text_field($_POST['miasto']),
-        'kod_pocztowy' => sanitize_text_field($_POST['kod_pocztowy']),
-        'urzad_skarbowy' => sanitize_text_field($_POST['urzad_skarbowy']),
-        'email' => sanitize_email($_POST['email']),
-        'telefon' => sanitize_text_field($_POST['telefon']),
-        'pesel' => sanitize_text_field($_POST['pesel']),
-        'data_zgloszenia' => current_time('mysql')
+###
     ];
     $result = $wpdb->query($wpdb->prepare(
-        "INSERT INTO ambasador_pmb_users_data
-        (user_id, imie, nazwisko, data_urodzenia, numer_rachunku, nazwa_banku, ulica, miasto, kod_pocztowy, urzad_skarbowy, email, telefon, pesel, data_zgloszenia)
+        "INSERT INTO #
+        (#)
         VALUES (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-        $data['user_id'],
-        $data['imie'],
-        $data['nazwisko'],
-        $data['data_urodzenia'],
-        $data['numer_rachunku'],
-        $data['nazwa_banku'],
-        $data['ulica'],
-        $data['miasto'],
-        $data['kod_pocztowy'],
-        $data['urzad_skarbowy'],
-        $data['email'],
-        $data['telefon'],
-        $data['pesel'],
-        $data['data_zgloszenia']
+        $data['#'],
+        $data['#'],
+        $data['#'],
+        $data['#'],
+        $data['#'],
+        $data['#'],
+        $data['#'],
+        $data['#'],
+        $data['#'],
+        $data['#'],
+        $data['#'],
+        $data['#'],
+        $data['#'],
+        $data['#']
     ));
 
     if ($result !== false) {
@@ -127,14 +114,7 @@ $username = $_SESSION['username'];
 // number of sold boxes and the total bonus amount
 $query = $wpdb->prepare(
     "SELECT 
-        SUM(p.quantity) as total_sold, 
-        MAX(p.purchase_date) as last_purchase_date,
-        u.paid_bonus,
-        u.current_bonus
-    FROM ambasador_pmb_purchases p
-    JOIN ambasador_pmb_users u 
-    ON p.kod_rabatowy = u.promo_code
-    WHERE p.kod_rabatowy = %s",
+        #
     $promo_code
 );
 
@@ -158,18 +138,7 @@ $wpdb->query("SET SESSION group_concat_max_len = 10000");
 
 $history_query = $wpdb->prepare(
     "SELECT 
-        crc,
-        firstName,
-        GROUP_CONCAT(produktZamowienie SEPARATOR ', ') as models,
-        SUM(quantity) as quantity,
-        MAX(purchase_date) as purchase_date,
-        (SUM(quantity) * 200) as bonus,
-        status
-    FROM ambasador_pmb_purchases 
-    WHERE kod_rabatowy = %s 
-    GROUP BY crc
-    ORDER BY purchase_date DESC",
-    $promo_code
+       #
 );
 
 $history_results = $wpdb->get_results($history_query, ARRAY_A);
@@ -394,11 +363,11 @@ get_header();
                             $status_class = 'status-' . $status;
 
                             echo "<tr>";
-                            echo "<td>" . htmlspecialchars($row['crc']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['firstName']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['models']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['quantity']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['purchase_date']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['#']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['#']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['#']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['#']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['#']) . "</td>";
                             echo "<td><span class='status-badge $status_class'>" . htmlspecialchars($status) . "</span></td>";
                             // echo "<td>" . ($row['quantity'] * 200) . " zł</td>";
                             echo "</tr>";
