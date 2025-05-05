@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo '<div class="error-message">Proszę zaakceptować regulamin! <span class="close-btn" onclick="this.parentElement.remove()">x</span></div>';
     } else {
         // Validation if user exists
-        $check_user = $conn->prepare("SELECT id FROM ambasador_pmb_users WHERE username = ? OR email = ?");
+        $check_user = $conn->prepare("SELECT id FROM # WHERE username = ? OR email = ?");
         $check_user->bind_param("ss", $username, $email);
         $check_user->execute();
         $check_user->store_result();
@@ -88,15 +88,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $promo_code = generatePromoCode($conn);
 
             // insert to DB
-            $stmt = $conn->prepare("INSERT INTO ambasador_pmb_users (username, password, email, promo_code, phone, facebook, instagram, recommend, tiktok, youtube, other_promotion) 
+            $stmt = $conn->prepare("INSERT INTO #
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssssiiiiis", $username, $password, $email, $promo_code, $phone, $facebook, $instagram, $recommend, $tiktok, $youtube, $other_platform);
+            $stmt->bind_param("sssssiiiiis",$#);
 
             if ($stmt->execute()) {
                 // set session
                 $_SESSION['user_id'] = $stmt->insert_id;
-                $_SESSION['username'] = $username;
-                $_SESSION['promo_code'] = $promo_code;
+                $_SESSION['username'] = #;
+                $_SESSION['promo_code'] = #;
 
                 // redirect to thanks page
                 $_SESSION['registration_message'] = "Rejestracja zakończona sukcesem! Twój kod promocyjny: <span> $promo_code </span>";
