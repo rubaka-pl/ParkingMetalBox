@@ -32,18 +32,7 @@ if (isset($_POST['submit_payout']) && wp_verify_nonce($_POST['payout_nonce'], 'p
         if (isset($_POST['remember_me']) && $_POST['remember_me'] == 'on') {
             // Сохранение данных в сессии
             $_SESSION['payout_data'] = [
-                'imie' => sanitize_text_field($_POST['imie']),
-                'nazwisko' => sanitize_text_field($_POST['nazwisko']),
-                'data_urodzenia' => $data_urodzenia,
-                'numer_rachunku' => sanitize_text_field($_POST['numer_rachunku']),
-                'nazwa_banku' => sanitize_text_field($_POST['nazwa_banku']),
-                'ulica' => sanitize_text_field($_POST['ulica']),
-                'miasto' => sanitize_text_field($_POST['miasto']),
-                'kod_pocztowy' => sanitize_text_field($_POST['kod_pocztowy']),
-                'urzad_skarbowy' => sanitize_text_field($_POST['urzad_skarbowy']),
-                'email' => sanitize_email($_POST['email']),
-                'telefon' => sanitize_text_field($_POST['telefon']),
-                'pesel' => sanitize_text_field($_POST['pesel'])
+                #
             ];
         } else {
             // Если не выбрано запоминание, очистить сессию
@@ -51,40 +40,25 @@ if (isset($_POST['submit_payout']) && wp_verify_nonce($_POST['payout_nonce'], 'p
         }
 
         $data = [
-            'user_id' => $user_id,
-            'imie' => sanitize_text_field($_POST['imie']),
-            'nazwisko' => sanitize_text_field($_POST['nazwisko']),
-            'data_urodzenia' => sanitize_text_field($_POST['data_urodzenia']),
-            'numer_rachunku' => sanitize_text_field($_POST['numer_rachunku']),
-            'nazwa_banku' => sanitize_text_field($_POST['nazwa_banku']),
-            'ulica' => sanitize_text_field($_POST['ulica']),
-            'miasto' => sanitize_text_field($_POST['miasto']),
-            'kod_pocztowy' => sanitize_text_field($_POST['kod_pocztowy']),
-            'urzad_skarbowy' => sanitize_text_field($_POST['urzad_skarbowy']),
-            'email' => sanitize_email($_POST['email']),
-            'telefon' => sanitize_text_field($_POST['telefon']),
-            'pesel' => sanitize_text_field($_POST['pesel']),
-            'data_zgloszenia' => current_time('mysql')
+     #
         ];
 
         $result = $wpdb->query($wpdb->prepare(
-            "INSERT INTO ambasador_pmb_users_data
-        (user_id, imie, nazwisko, data_urodzenia, numer_rachunku, nazwa_banku, ulica, miasto, kod_pocztowy, urzad_skarbowy, email, telefon, pesel, data_zgloszenia)
-        VALUES (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-            $data['user_id'],
-            $data['imie'],
-            $data['nazwisko'],
-            $data['data_urodzenia'],
-            $data['numer_rachunku'],
-            $data['nazwa_banku'],
-            $data['ulica'],
-            $data['miasto'],
-            $data['kod_pocztowy'],
-            $data['urzad_skarbowy'],
-            $data['email'],
-            $data['telefon'],
-            $data['pesel'],
-            $data['data_zgloszenia']
+            "#",
+            $data['#'],
+            $data['#'],
+            $data['#'],
+            $data['#'],
+            $data['#'],
+            $data['#'],
+            $data['#'],
+            $data['#'],
+            $data['#'],
+            $data['#'],
+            $data['#'],
+            $data['#'],
+            $data['#'],
+            $data['#']
         ));
 
         if ($result !== false) {
