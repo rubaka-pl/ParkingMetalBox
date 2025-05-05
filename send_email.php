@@ -19,13 +19,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_POST['agreeTelecom'])) $errors[] = "Wymagana zgoda marketingowa";
 
     if (empty($errors)) {
-        ini_set("SMTP", "parkingmagicbox1.atthost24.pl");
-        ini_set("smtp_port", 587);
-        ini_set("sendmail_from", "parkingmagicbox@attthost24.pl");
+        ini_set("SMTP", "#.#.pl");
+        ini_set("smtp_port", #);
+        ini_set("sendmail_from", "#@#.pl");
 
-        $to = "marketing@parkingmagicbox.com";
+        $to = "#@#.com";
         $subject = "Nowe zapytanie kontaktowe";
-        $headers = "From: parkingmagicbox@attthost24.pl\r\n";
+        $headers = "From: #@#.pl\r\n";
         $headers .= "Reply-To: " . $email . "\r\n";
         $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
