@@ -137,7 +137,7 @@ function update_user_bonus($user_id, $quantity)
 
     // Updating current_bonus for the user
     $result = $wpdb->query($wpdb->prepare(
-        "UPDATE ambasador_pmb_users SET current_bonus = current_bonus + %d WHERE id = %d",
+        "UPDATE # SET current_bonus = current_bonus + %d WHERE id = %d",
         $bonus,
         $user_id
     ));
@@ -156,8 +156,7 @@ function reset_user_bonus($user_id)
 
     // Get current user data
     $user = $wpdb->get_row($wpdb->prepare(
-        "SELECT current_bonus, paid_bonus, promo_code, username 
-         FROM ambasador_pmb_users 
+        "SELECT # 
          WHERE id = %d",
         $user_id
     ));
@@ -178,7 +177,7 @@ function reset_user_bonus($user_id)
 
         // Update bonuses in users table
         $wpdb->query($wpdb->prepare(
-            "UPDATE ambasador_pmb_users 
+            "UPDATE #
              SET paid_bonus = paid_bonus + %d, 
                  current_bonus = 0 
              WHERE id = %d",
@@ -188,7 +187,7 @@ function reset_user_bonus($user_id)
 
         // Update payment status in users_data table - ONLY update status_wyplaty
         $wpdb->query($wpdb->prepare(
-            "UPDATE ambasador_pmb_users_data 
+            "UPDATE #
              SET status_wyplaty = 'wypłacono' 
              WHERE user_id = %d 
              ORDER BY id DESC LIMIT 1",
@@ -335,7 +334,7 @@ function render_box_statuses_page()
             echo '<div class="error"><p>Nie można zmienić statusu "potwierdzona" po jego zatwierdzeniu!</p></div>';
         } else {
             $wpdb->update(
-                'ambasador_pmb_purchases',
+                '#',
                 array('status' => $new_status),
                 array('order_id' => $order_id),
                 array('%s'),
@@ -541,27 +540,7 @@ function render_bonus_control_page()
     }
 
     $query = "
-    SELECT 
-        u.id, u.username, u.promo_code, u.current_bonus, u.paid_bonus,
-        d.status_wyplaty, d.data_zgloszenia,
-        d.imie, d.nazwisko, d.data_urodzenia, d.numer_rachunku,
-        d.nazwa_banku, d.ulica, d.miasto, d.kod_pocztowy,
-        d.urzad_skarbowy, d.email as user_email, d.telefon, d.pesel
-    FROM ambasador_pmb_users u
-    LEFT JOIN (
-        SELECT 
-            user_id, status_wyplaty, data_zgloszenia,
-            imie, nazwisko, data_urodzenia, numer_rachunku,
-            nazwa_banku, ulica, miasto, kod_pocztowy,
-            urzad_skarbowy, email, telefon, pesel
-        FROM ambasador_pmb_users_data
-        WHERE id IN (
-            SELECT MAX(id) 
-            FROM ambasador_pmb_users_data 
-            GROUP BY user_id
-        )
-    ) d ON u.id = d.user_id
-    ORDER BY u.username
+    #
 ";
 
     $users = $wpdb->get_results($query);
@@ -772,15 +751,7 @@ function log_bonus_change($user_id, $promo_code, $username, $action, $old_curren
     $wpdb->insert(
         'bonus_logs',
         array(
-            'user_id' => $user_id,
-            'promo_code' => $promo_code,
-            'username' => $username,
-            'action' => $action,
-            'old_current_bonus' => $old_current_bonus,
-            'new_current_bonus' => $new_current_bonus,
-            'old_paid_bonus' => $old_paid_bonus,
-            'new_paid_bonus' => $new_paid_bonus,
-            'changed_by' => $changed_by
+          #
         )
     );
 }
