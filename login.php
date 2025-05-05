@@ -10,8 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $login = $_POST['login'];
     $password = $_POST['password'];
 
-    // Ищем пользователя по имени или email
-    $sql = "SELECT * FROM ambasador_pmb_users WHERE username='$login' OR email='$login'";
+    $sql = "SELECT #='$login' OR email='$login'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
