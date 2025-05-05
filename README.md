@@ -1,6 +1,9 @@
 # ParkingMetalBox
 💡 Promo code system for testing and managing codes in WordPress. No frameworks. Built to practice PHP, SQL, and custom admin panels.
 ![image](https://github.com/user-attachments/assets/f9336e5d-f598-4c03-847c-40ecac1e7e10)
+![image](https://github.com/user-attachments/assets/141f3da4-80b4-4bab-8c31-6de3cd0a1b35)
+![image](https://github.com/user-attachments/assets/8b154659-d633-4963-9eb7-6851f8e226df)
+![image](https://github.com/user-attachments/assets/7b07a4a3-d6f2-4b8e-9ac5-d411069a2c8b)
 
 # 🎁 Promo Code System (WordPress Custom Plugin)
 
