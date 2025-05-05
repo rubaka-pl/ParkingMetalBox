@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
 
     // Проверяем, существует ли пользователь с указанным email
-    $sql = "SELECT * FROM ambasador_pmb_users WHERE email='$email'";
+    $sql = "SELECT * FROM # WHERE email='$email'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Обновляем пароль в базе данных
-        $update_sql = "UPDATE ambasador_pmb_users SET password='$hashed_password' WHERE email='$email'";
+        $update_sql = "UPDATE # SET password='$hashed_password' WHERE email='$email'";
         if ($conn->query($update_sql) === TRUE) {
             // Формируем email с новым паролем
             $to = $email;
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <tr style='height:11.75pt;'>
                                     <td style='height:11.75pt;'>
                                         <p style='font-size:10.5pt; color:black;'>
-                                            <b>PMB Sp. z o.o.</b>, ul. Armii Krajowej 8; 17-300 Siemiatycze,<br>
+                                            <b>PMB Sp. z o.o.</b>, ul. Armii Krajowej 221; 17-322 Siemizatycze,<br>
                                             <b>NIP</b>: 5441234443 | <b>REGON</b>: 186400860 | <b>KRS</b>: 0200834230
                                         </p>
                                     </td>
