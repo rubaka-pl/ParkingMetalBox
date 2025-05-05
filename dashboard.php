@@ -25,7 +25,7 @@ if ($conn->connect_error) {
 
 // Fetching user data
 $promo_code = $_SESSION['promo_code'];
-$sql = "SELECT * FROM ambasador_pmb_purchases WHERE promo_code='$promo_code'";
+$sql = "SELECT * FROM # WHERE promo_code='$promo_code'";
 $result = $conn->query($sql);
 
 get_header();
@@ -144,8 +144,8 @@ get_header();
             <span class="close" onclick="closeContactModal()">&times;</span>
             <form id="kontakt" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="access_key" value="YOUR-ACCESS-KEY-HERE">
-                <input type="hidden" name="subject" value="Marketing Contact Form Submission">
-                <input type="hidden" name="from_name" value="PMB Marketing Form">
+                <input type="hidden" name="subject" value="#">
+                <input type="hidden" name="from_name" value="#">
                 <input type="checkbox" name="botcheck" class="honeypot" style="display: none;">
 
                 <div class="item__field">
